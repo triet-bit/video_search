@@ -1,0 +1,21 @@
+# API
+fastapi
+uvicorn[standard]
+
+# Database
+qdrant-client
+pymongo
+
+# ML models
+torch
+transformers
+Pillow
+
+# Utils
+numpy
+python-dotenv
+deep-translator
+
+# LLM
+google-genai
+pydantic
