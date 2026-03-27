@@ -1,6 +1,6 @@
 # HCMAI Video Retrieval System (Renovate)
 
-A state-of-the-art Video Retrieval System rebuilt and significantly improved from the original submission for the HCMAI Competition.
+> A Video Retrieval System rebuilt and significantly improved from the original submission for the HCMAI Competition.
 
 ---
 
