@@ -1,14 +1,19 @@
 # HCMAI Video Retrieval System (Renovate)
-
+[![Python](https://img.shields.io/badge/Python-3.12-3776AB.svg?style=flat&logo=python&logoColor=white)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688.svg?style=flat&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![React Vite](https://img.shields.io/badge/React_Vite-646CFF.svg?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Qdrant](https://img.shields.io/badge/Qdrant-Vector_DB-FF5252.svg?style=flat&logo=qdrant&logoColor=white)](https://qdrant.tech/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-Database-47A248.svg?style=flat&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C.svg?style=flat&logo=pytorch&logoColor=white)](https://pytorch.org/)
+[![Google Gemini](https://img.shields.io/badge/Gemini-2.5_Flash-8E75B2.svg?style=flat&logo=googlebard&logoColor=white)](https://deepmind.google/technologies/gemini/)
+[![Docker](https://img.shields.io/badge/Docker-Compose-2496ED.svg?style=flat&logo=docker&logoColor=white)](https://www.docker.com/)
 > A Video Retrieval System rebuilt and significantly improved from the original submission for the HCMAI Competition.
-
----
 
 ## Project Context
 
 This project is a major renovation of our original video search product built for the HCMAI competition. In the initial version, we utilized FAISS for vector storage and explored models like BEiT-3 (which is fundamentally geared towards facial emotion recognition rather than pure retrieval tasks).
 
-To achieve superior search accuracy and handle complex, multi-event queries, the entire pipeline has been re-architected. We migrated from FAISS to **Qdrant** for robust vector management, replaced the embedding engine with **SigLIP**, introduced **BLIP-2** for visual reranking, and integrated **Gemini 2.5 Flash** for intelligent query chunking.
+To achieve superior search accuracy and handle complex, multi-event queries, the entire pipeline has been re-architected. We migrated from FAISS to **Qdrant** for robust vector management, transitioned from local storage to **MongoDB** for scalable metadata handling, replaced the embedding engine with **SigLIP2**, introduced **BLIP-2** for visual reranking, and integrated **Gemini 2.5 Flash** for intelligent query chunking.
 
 ---
 
@@ -42,7 +47,7 @@ Standard single-query semantic search. Best for short, focused queries.
 User query
     │
     ▼
-SigLIP encoder          ← converts text to embedding vector
+SigLIP2 encoder          ← converts text to embedding vector
     │
     ▼
 Qdrant (cosine search)  ← finds nearest keyframe vectors
@@ -63,7 +68,7 @@ Multi-event temporal search. Finds a sequence of events occurring in order withi
 Multi-event query  (e.g. "man picks up bag → walks through door → enters car")
     │
     ▼
-SigLIP encoder          ← each event clause encoded independently
+SigLIP2 encoder          ← each event clause encoded independently
     │
     ▼
 Qdrant search           ← candidate keyframes retrieved per event
