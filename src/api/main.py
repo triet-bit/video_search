@@ -18,9 +18,8 @@ setup_logging()
 
 log = logging.getLogger(__name__)
 
-QDRANT_HOST     = os.getenv("QDRANT_HOST",  "localhost")
-QDRANT_PORT     = int(os.getenv("QDRANT_PORT", "6333"))
-QDRANT_HTTPS    = os.getenv("QDRANT_HTTPS", "false").lower() == "true"
+QDRANT_URL = os.getenv("QDRANT_URL")
+QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")
 ENABLE_RERANKER = os.getenv("ENABLE_RERANKER", "true").lower() == "true"
 
 
@@ -30,9 +29,8 @@ async def lifespan(app: FastAPI):
     log.info("Starting up...")
 
     app.state.qdrant = get_qdrant_client(
-        host=QDRANT_HOST,
-        port=QDRANT_PORT,
-        https=QDRANT_HTTPS,
+        url=QDRANT_URL,
+        api_key=QDRANT_API_KEY,
     )
     app.state.mongo = get_db()
 

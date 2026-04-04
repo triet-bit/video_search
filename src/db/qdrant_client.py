@@ -9,23 +9,17 @@ _qdrant_client: Optional[QdrantClient] = None
 
 
 def get_qdrant_client(
-    host: str = "localhost",
-    port: int = 6333,
-    https: bool = False,
-    prefer_grpc: bool = False,
-    timeout: int = 60,
+    url: Optional[str] = None,
+    api_key: Optional[str] = None,
 ) -> QdrantClient:
     global _qdrant_client
     if _qdrant_client is not None:
-        log.info("Reusing existing Qdrant client")
         return _qdrant_client
     try:
         _qdrant_client = QdrantClient(
-            host=host,
-            port=port,
-            https=https,
-            prefer_grpc=prefer_grpc,
-            timeout=timeout,
+            url=url,
+            api_key=api_key,
+            timeout=60,
         )
         log.info(f"Connected to Qdrant at {host}:{port}")
         return _qdrant_client

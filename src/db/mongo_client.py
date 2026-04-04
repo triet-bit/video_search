@@ -10,7 +10,6 @@ load_dotenv()
 MONGO_URI = os.environ["MONGO_URI"]
 MONGO_DB  = os.environ["MONGO_DB"]
 
-# Bug fix: `_db = Optional[...] = None` là syntax sai — phải tách type hint và assignment
 _client: Optional[MongoClient] = None
 _db: Optional[pymongo.database.Database] = None
 
@@ -22,7 +21,6 @@ def get_db() -> pymongo.database.Database:
         return _db
     try:
         _client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000)
-        # Ping để xác nhận kết nối thành công ngay khi khởi tạo
         _client.admin.command("ping")
         _db = _client[MONGO_DB]
         log.info(f"Connected to MongoDB, database: {MONGO_DB}")
@@ -47,7 +45,7 @@ def search_mongo(
     try:
         doc = db[collection_name].find_one(
             {"qdrant_id": qdrant_id},
-            {"_id": 0},  # Bug fix: trả về _id gây lỗi JSON serialization
+            {"_id": 0},  
         )
         if doc:
             return doc

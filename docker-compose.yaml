@@ -13,20 +13,20 @@ services:
       - db_network
     restart: always
   
-  elastic_s: 
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.7.0 # Trực tiếp dùng image gốc, bỏ qua Dockerfile
-    container_name: elastic_s 
-    ports: 
-      - 9200:9200
-    environment:
-      - "xpack.security.enabled=false"
-      - "discovery.type=single-node"
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-    volumes:
-      - es_data:/usr/share/elasticsearch/data
-    networks: 
-      - db_network
-    restart: always
+  # elastic_s: 
+  #   image: docker.elastic.co/elasticsearch/elasticsearch:8.7.0 # Trực tiếp dùng image gốc, bỏ qua Dockerfile
+  #   container_name: elastic_s 
+  #   ports: 
+  #     - 9200:9200
+  #   environment:
+  #     - "xpack.security.enabled=false"
+  #     - "discovery.type=single-node"
+  #     - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+  #   volumes:
+  #     - es_data:/usr/share/elasticsearch/data
+  #   networks: 
+  #     - db_network
+  #   restart: always
   mongo_db: 
     image: mongo:latest
     container_name: mongo
