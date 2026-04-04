@@ -10,7 +10,7 @@ __pycache__/
 # Data / index files (tuỳ chọn — bỏ comment nếu không muốn commit)
 # data/faiss_index.bin
 # data/metadata.json
-
+data/
 # Misc
 ngrok.txt
 tree.txt
