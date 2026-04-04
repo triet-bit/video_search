@@ -24,7 +24,6 @@ def get_db() -> pymongo.database.Database:
         _client = MongoClient(
             MONGO_URI,
             tls=True,
-            tlsAllowInvalidCertificates=True,
             tlsInsecure=True,
             serverSelectionTimeoutMS=5000,
         )
