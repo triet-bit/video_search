@@ -77,7 +77,7 @@ def batch_search_mongo(
             {"qdrant_id": {"$in": list_qdrant_id}},
             {"_id": 0},
         )
-        result = {doc["qdrant_id"]: doc for doc in cursor}
+        result = {str(doc["qdrant_id"]): doc for doc in cursor}
         missing = set(qdrant_ids) - set(result.keys())
         if missing:
             log.warning(f"Missing {len(missing)} docs in MongoDB: {missing}")
