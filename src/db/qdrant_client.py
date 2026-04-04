@@ -21,7 +21,7 @@ def get_qdrant_client(
             api_key=api_key,
             timeout=60,
         )
-        log.info(f"Connected to Qdrant at {host}:{port}")
+        log.info(f"Connected to Qdrant at {url}")
         return _qdrant_client
     except Exception as e:
         log.error(f"Failed to connect to Qdrant: {e}")
