@@ -46,7 +46,7 @@ def search_qdrant(
             must=[FieldCondition(key="video_name", match=MatchValue(value=video_name))]
         )
     try:
-        results = client.query_points(
+        response = client.query_points(
             collection_name=collection_name,
             query=query_vector,
             query_filter=query_filter,
@@ -54,6 +54,7 @@ def search_qdrant(
             with_payload=with_payload,
             with_vectors=with_vectors,
         )
+        results = response.points
         log.info(f"Qdrant search returned {len(results)} results")
         return results
     except Exception as e:
