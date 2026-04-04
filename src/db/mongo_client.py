@@ -50,7 +50,7 @@ def search_mongo(
     """
     try:
         doc = db[collection_name].find_one(
-            {"qdrant_id": qdrant_id},
+            {"qdrant_id": int(qdrant_id)},
             {"_id": 0},  
         )
         if doc:
@@ -72,8 +72,9 @@ def batch_search_mongo(
     Trả về dict {qdrant_id: doc} để lookup O(1).
     """
     try:
+        list_qdrant_id = [int(id) for id in qdrant_ids]
         cursor = db[collection_name].find(
-            {"qdrant_id": {"$in": qdrant_ids}},
+            {"qdrant_id": {"$in": list_qdrant_id}},
             {"_id": 0},
         )
         result = {doc["qdrant_id"]: doc for doc in cursor}
