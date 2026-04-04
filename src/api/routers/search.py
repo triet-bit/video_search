@@ -16,7 +16,7 @@ from src.models.translator import translate_to_english, translate_many
 
 log = logging.getLogger(__name__)
 
-COLLECTION_NAME  = "HCMAI-SIGLIP"
+COLLECTION_NAME  = "HCMAI"
 MONGO_COLLECTION = "embeddings"
 
 router = APIRouter()

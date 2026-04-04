@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 
-const API_BASE = "http://localhost:8000";
+const API_BASE = "https://hypergamous-somewhat-hiroko.ngrok-free.dev";
 
 // ── tiny debounce ──────────────────────────────────────────
 function useDebounce(fn, delay) {
