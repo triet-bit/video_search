@@ -81,7 +81,7 @@ async def vector_search(
 
     hits = search_qdrant(
         client=qdrant, collection_name=COLLECTION_NAME,
-        query_vector=query_vector, top_k=body.top_k * 3,
+        query=query_vector, top_k=body.top_k * 3,
         video_name=body.video_name,
     )
     if not hits:
