@@ -11,7 +11,7 @@ from src.api.schemas.response import (
 from src.api.dependencies import get_qdrant_client, get_mongo_db
 from src.db.qdrant_client import search_qdrant, batch_search_qdrant, merge_and_dedup, scroll_video_frames
 from src.db.mongo_client import batch_search_mongo
-from src.search.trake_search import run_dante_dp
+from src.search.track_search import run_dante_dp
 from src.models.translator import translate_to_english, translate_many
 
 log = logging.getLogger(__name__)
