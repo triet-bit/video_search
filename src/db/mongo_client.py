@@ -4,6 +4,7 @@ from pymongo import MongoClient, errors as mongo_errors
 from src.utils.logger import log
 from dotenv import load_dotenv
 from typing import Optional
+import ssl  
 
 load_dotenv()
 
@@ -20,7 +21,17 @@ def get_db() -> pymongo.database.Database:
         log.info("Reusing existing MongoDB connection")
         return _db
     try:
-        _client = MongoClient(MONGO_URI,tls=True, serverSelectionTimeoutMS=5000,tlsAllowInvalidCertificates=True)
+        ssl_context = ssl.create_default_context()
+        ssl_context.check_hostname = False
+        ssl_context.verify_mode = ssl.CERT_NONE
+
+        _client = MongoClient(
+            MONGO_URI,
+            tls=True,
+            tlsAllowInvalidCertificates=True,
+            ssl_context=ssl_context,
+            serverSelectionTimeoutMS=5000,
+        )
         _client.admin.command("ping")
         _db = _client[MONGO_DB]
         log.info(f"Connected to MongoDB, database: {MONGO_DB}")
