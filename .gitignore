@@ -26,3 +26,4 @@ frontend/.env
 frontend/.env.*
 !frontend/.env.example
 migrate.py
+test 
