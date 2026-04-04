@@ -7,7 +7,7 @@ client = get_qdrant_client(host="localhost",
                             timeout=500)
 def single_vector_search(collection_name: str, query_vector: list[float], top_k: int = 5) -> list[dict]:
     try:
-        search_result = client.search(
+        search_result = client.query_points(
             collection_name=collection_name,
             query_vector=query_vector,
             limit=top_k
