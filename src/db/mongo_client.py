@@ -20,7 +20,7 @@ def get_db() -> pymongo.database.Database:
         log.info("Reusing existing MongoDB connection")
         return _db
     try:
-        _client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000)
+        _client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000,tlsAllowInvalidCertificates=True)
         _client.admin.command("ping")
         _db = _client[MONGO_DB]
         log.info(f"Connected to MongoDB, database: {MONGO_DB}")
