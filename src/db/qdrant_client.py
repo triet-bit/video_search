@@ -46,7 +46,7 @@ def search_qdrant(
             must=[FieldCondition(key="video_name", match=MatchValue(value=video_name))]
         )
     try:
-        results = client.search(
+        results = client.query_points(
             collection_name=collection_name,
             query_vector=query_vector,
             query_filter=query_filter,
