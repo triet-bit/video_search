@@ -11,7 +11,7 @@
 
 ## Project Context
 
-This project is a major renovation of our original video search product built for the HCMAI competition. In the initial version, we utilized FAISS for vector storage and explored models like BEiT-3 (which is fundamentally geared towards facial emotion recognition rather than pure retrieval tasks).
+This project is a major renovation of our original video search product built for the HCMAI competition. In the initial version, we utilized FAISS for vector storage and explored models like BEiT-3.
 
 To achieve superior search accuracy and handle complex, multi-event queries, the entire pipeline has been re-architected. We migrated from FAISS to **Qdrant** for robust vector management, transitioned from local storage to **MongoDB** for scalable metadata handling, replaced the embedding engine with **SigLIP2**, introduced **BLIP-2** for visual reranking, and integrated **Gemini 2.5 Flash** for intelligent query chunking.
 
